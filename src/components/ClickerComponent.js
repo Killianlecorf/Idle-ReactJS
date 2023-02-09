@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ClickerComponent = () => {
 
+    const intervalId = useRef(null)
     const [coins, setCoins] = useState(0)
-    const [idleMiners, setMiners] = useState({
-        miner: 1,
+    const [idleMiners, setdleMiners] = useState({
+        miner: 0,
         minerTwo :0,
         minerTree: 0
     })
@@ -16,10 +17,22 @@ const ClickerComponent = () => {
     const handleBuyMiner = () => {
         if (coins >= 10) {
             setCoins(coins - 10)
-            setMiners({...idleMiners, miner: idleMiners.miner + 1 })
+            setdleMiners({...idleMiners, miner: idleMiners.miner + 1 })
         }
     }
 
+    const additionMiner = () => { // idleMiners.miner
+        setCoins((previousValue) => {
+            return previousValue + idleMiners.miner
+        })
+    }
+
+    useEffect(() => {
+        if (idleMiners.miner !== 0) {
+            clearInterval(intervalId.current)
+            intervalId.current = setInterval(additionMiner, 1000)
+        }
+    },[idleMiners.miner])
 
     return (
         <div>
