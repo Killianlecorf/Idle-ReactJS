@@ -1,4 +1,5 @@
 import React from 'react';
+import LocalString from './micro-components/LocalString';
 
 const ClickerComponent = ({money, setMoney, typeMoney}) => {
     
@@ -9,7 +10,7 @@ const ClickerComponent = ({money, setMoney, typeMoney}) => {
     return (
         <div>
             <button onClick={ handleChangeCoins }>Click</button>
-            <p>{ money[typeMoney] }</p>
+            <LocalString number={money[typeMoney]} />
         </div>
     );
 };

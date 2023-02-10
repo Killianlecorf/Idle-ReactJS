@@ -6,8 +6,8 @@ const BuyWorker = ({money , setMoney , typeMoney, idleWorker , setIdleWorker, ty
     const intervalIntermediateWorkerId = useRef(null)
     const intervalExpertWorkerId = useRef(null)
 
-    const numberIntermediateWorker = 10 ;
-    const numberExpertWorker = 100 ;
+    const numberIntermediateWorker = 15 ;
+    const numberExpertWorker = 200 ;
 
 
     const handleBuyJuniorWorker = () => {
@@ -60,11 +60,6 @@ const BuyWorker = ({money , setMoney , typeMoney, idleWorker , setIdleWorker, ty
             intervalIntermediateWorkerId.current = setInterval(additionIntermediateWorker, 1000)
         }
     },[idleWorker[typeIntermediateWorker]])
-
-
-
-
-
 
     const handleBuyExpertWorker = () => {
         if (money[typeMoney] >= 1) {
