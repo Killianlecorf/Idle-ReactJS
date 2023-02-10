@@ -1,31 +1,18 @@
 import React from 'react';
+import LocalString from './micro-components/LocalString';
 
-const ClickerComponent = ({money, setMoney}) => {
+const ClickerComponent = ({money, setMoney, typeMoney}) => {
     
     const handleChangeCoins = () => {
-        setMoney({...money ,coins: money.coins + 1})
+        setMoney({...money ,[typeMoney]: money[typeMoney] + 1})
     }
 
     return (
         <div>
             <button onClick={ handleChangeCoins }>Click</button>
-            <p>{ money.coins }</p>
+            <LocalString number={money[typeMoney]} />
         </div>
     );
 };
 
 export default ClickerComponent;
-
-// const clickit = () => {
-//     const button = document.getElementById('button');
-//     const worker = document.getElementById('worker');
-//     for (let index = 0; index < 50; index++) {
-//         button.click()
-//         console.log(button)
-//     }
-
-//     document.addEventListener('mousemove', () => {
-//         button.click()
-//         worker.click()
-//     })
-// } 

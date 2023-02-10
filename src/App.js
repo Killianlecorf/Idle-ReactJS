@@ -1,4 +1,5 @@
-import PageIdle from './pages/PageIdle'
+import PageIdle from "./pages/pageIdle";
+
 
 function App() {
   return (
