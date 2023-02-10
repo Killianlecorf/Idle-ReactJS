@@ -1,0 +1,25 @@
+.workerBoardBack{
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+    display: flex;
+    align-items: flex-end;
+
+    .workerBoard{
+        width: 100%;
+        height: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background-color: blue;
+
+        .workerCard{
+            display: flex;
+            text-align: center;
+            width: 25%;
+            height: 80%;
+            background-color: yellow;
+            
+        }
+    }
+}
