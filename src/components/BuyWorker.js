@@ -34,10 +34,6 @@ const BuyWorker = ({money , setMoney , typeMoney, idleWorker , setIdleWorker, ty
         
     },[idleWorker[typeJuniorWorker]])
 
-
-
-
-
     const handleBuyIntermediateWorker = () => {
         if (money[typeMoney] >= 1000) {
             setMoney({...money ,[typeMoney]: money[typeMoney] - 1000})
@@ -87,15 +83,15 @@ const BuyWorker = ({money , setMoney , typeMoney, idleWorker , setIdleWorker, ty
     return (
         <div className='cardWorker'>
             <div className="priceWorker">
-                <p>JuniorWorker : { idleWorker[typeJuniorWorker] }</p>
+                <p>Junior worker : { idleWorker[typeJuniorWorker] }</p>
                 <button onClick={ handleBuyJuniorWorker } >10 {[typeMoney]}</button>
             </div>
             <div className="priceWorker">
-                <p> Worker : <br></br> { idleWorker[typeIntermediateWorker]}</p>
+                <p> worker : <br></br> { idleWorker[typeIntermediateWorker]}</p>
                 <button onClick={ handleBuyIntermediateWorker } >1000 {[typeMoney]}</button>
             </div>
             <div className="priceWorker">
-                <p>Expert Worker : { idleWorker[typeExpertWorker] }</p>
+                <p>Expert Worker: { idleWorker[typeExpertWorker] }</p>
                 <button onClick={ handleBuyExpertWorker } >1 000 000 {[typeMoney]}</button>
             </div>
         </div>
