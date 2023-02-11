@@ -8,7 +8,7 @@ const ClickerComponent = ({money, setMoney, typeMoney}) => {
     }
 
     return (
-        <div>
+        <div> 
             <button onClick={ handleChangeCoins }>Click</button>
             <LocalString number={money[typeMoney]} />
         </div>

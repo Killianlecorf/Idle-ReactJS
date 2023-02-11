@@ -47,7 +47,7 @@ const PageIdle = () => {
             setMoney({...money, coins: money.coins - 50000 })
             setUnlockJob({...unlockJob, lumberjack : true , buttonLumberjack : true })
 
-        }
+        } 
     }
 
     const displaylumberjack = () => {
@@ -63,7 +63,7 @@ const PageIdle = () => {
                         typeJuniorWorker= {'juniorLumberjack'} 
                         typeIntermediateWorker={ 'intermediateLumberjack' } 
                         typeExpertWorker={'expertLumberjack'}/>
-                        {!unlockJob.buttonMiner? <button onClick={ handleUnlockMiner }> Buy Miner : 500 000 et 250 000 Wood</button> : ''}
+                        {!unlockJob.buttonMiner? <button className="UpgaradeWorkerButton" onClick={ handleUnlockMiner }> Buy Miner : 500 000 et 250 000 Wood</button> : ''}
                     </div>
         }
     }
@@ -89,7 +89,7 @@ const PageIdle = () => {
                         typeJuniorWorker= {'juniorMiner'} 
                         typeIntermediateWorker={ 'intermediateMiner' } 
                         typeExpertWorker={'expertMiner'}/>
-                        {!unlockJob.buttonDiamondMiner ? <button onClick={ handleUnlockDiamondMiner }> Buy DiamonMiner : 1 000 000, 500 000 wood et 250 000 stone</button> : ''}
+                        {!unlockJob.buttonDiamondMiner ? <button className="UpgaradeWorkerButton" onClick={ handleUnlockDiamondMiner }> Buy DiamonMiner : 1 000 000, 500 000 wood et 250 000 stone</button> : ''}
                     </div>
         }
     }
@@ -126,16 +126,21 @@ const PageIdle = () => {
             <div className="workerBoard">
                 <div className="workerCard">
                     <ClickerComponent money = {money} setMoney= {setMoney} typeMoney= {'coins'} />
-                    <BuyWorker 
-                    money = {money} 
-                    setMoney= {setMoney} 
-                    typeMoney={'coins'} 
-                    idleWorker = {idleBanker} 
-                    setIdleWorker={setIdleBanker} 
-                    typeJuniorWorker= {'juniorBanker'} 
-                    typeIntermediateWorker={ 'intermediateBanker' }  
-                    typeExpertWorker={'expertBanker'}/>
-                    {unlockJob.buttonLumberjack === false ? <button onClick={ handleUnlockLumberjack }> Buy lumberjack : 50 000</button> : ''}
+                    <div className="cardWorker">
+                        <BuyWorker 
+                            money = {money} 
+                            setMoney= {setMoney} 
+                            typeMoney={'coins'} 
+                            idleWorker = {idleBanker} 
+                            setIdleWorker={setIdleBanker} 
+                            typeJuniorWorker= {'juniorBanker'} 
+                            typeIntermediateWorker={ 'intermediateBanker' }  
+                            typeExpertWorker={'expertBanker'}/> 
+                    </div>
+                    <div className="upgradeWorker">
+                        <p>Buy lumberjack : 50 000</p>
+                        {unlockJob.buttonLumberjack === false ? <button className="UpgaradeWorkerButton" onClick={ handleUnlockLumberjack }>Buy</button> : ''}
+                    </div>
                 </div>   
                 {displaylumberjack()}
                 {displayMiner()}
