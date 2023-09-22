@@ -8,9 +8,11 @@ const ClickerComponent = ({money, setMoney, typeMoney}) => {
     }
 
     return (
-        <div>
-            <button onClick={ handleChangeCoins }>Click</button>
-            <LocalString number={money[typeMoney]} />
+        <div className='centerCard'> 
+            <button className='clickFarm' onClick={ handleChangeCoins }>Click</button>
+            <div>
+                <LocalString number={money[typeMoney]} />
+            </div>
         </div>
     );
 };

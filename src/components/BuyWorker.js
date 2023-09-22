@@ -8,7 +8,7 @@ const BuyWorker = ({money , setMoney , typeMoney, idleWorker , setIdleWorker, ty
 
     const numberIntermediateWorker = 15 ;
     const numberExpertWorker = 200 ;
-
+ 
 
     const handleBuyJuniorWorker = () => {
         if (money[typeMoney] >= 10) {
@@ -34,10 +34,6 @@ const BuyWorker = ({money , setMoney , typeMoney, idleWorker , setIdleWorker, ty
         
     },[idleWorker[typeJuniorWorker]])
 
-
-
-
-
     const handleBuyIntermediateWorker = () => {
         if (money[typeMoney] >= 1000) {
             setMoney({...money ,[typeMoney]: money[typeMoney] - 1000})
@@ -62,7 +58,7 @@ const BuyWorker = ({money , setMoney , typeMoney, idleWorker , setIdleWorker, ty
     },[idleWorker[typeIntermediateWorker]])
 
     const handleBuyExpertWorker = () => {
-        if (money[typeMoney] >= 1) {
+        if (money[typeMoney] >= 1000000) {
             setMoney({...money ,[typeMoney]: money[typeMoney] - 1000000})
             setIdleWorker({...idleWorker, [typeExpertWorker]: idleWorker[typeExpertWorker] + 1 })
         }
@@ -85,13 +81,19 @@ const BuyWorker = ({money , setMoney , typeMoney, idleWorker , setIdleWorker, ty
     },[idleWorker[typeExpertWorker]])
 
     return (
-        <div>
-            <button onClick={ handleBuyJuniorWorker } >buy Miner for 10 {[typeMoney]}</button>
-            <p>Junior Worker : { idleWorker[typeJuniorWorker] }</p>
-            <button onClick={ handleBuyIntermediateWorker } >buy Miner for 1000 {[typeMoney]}</button>
-            <p>Intermediate Worker : { idleWorker[typeIntermediateWorker]}</p>
-            <button onClick={ handleBuyExpertWorker } >buy Miner for 1 000 000 {[typeMoney]}</button>
-            <p>Expert Worker : { idleWorker[typeExpertWorker] }</p>
+        <div className='cardWorker'>
+            <div className="priceWorker">
+                <p>Junior worker : { idleWorker[typeJuniorWorker] }</p>
+                <button onClick={ handleBuyJuniorWorker } >10 {[typeMoney]}</button>
+            </div>
+            <div className="priceWorker">
+                <p> worker : <br></br> { idleWorker[typeIntermediateWorker]}</p>
+                <button onClick={ handleBuyIntermediateWorker } >1000 {[typeMoney]}</button>
+            </div>
+            <div className="priceWorker">
+                <p>Expert Worker: { idleWorker[typeExpertWorker] }</p>
+                <button onClick={ handleBuyExpertWorker } >1 000 000 {[typeMoney]}</button>
+            </div>
         </div>
     );
 };
