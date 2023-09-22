@@ -44,7 +44,7 @@ const PageIdle = () => {
 
     const handleUnlockLumberjack = () => {
         if (money.coins >= 1) {
-            // setMoney({...money, coins: money.coins - 50000 })
+            setMoney({...money, coins: money.coins - 50000 })
             setUnlockJob({...unlockJob, lumberjack : true , buttonLumberjack : true })
 
         } 
@@ -75,7 +75,7 @@ const PageIdle = () => {
 
     const handleUnlockMiner = () => {
         if (money.coins >= 1 && money.wood >= 1) {
-            // setMoney({...money, coins: money.coins - 500000 , wood: money.wood - 250000 })
+            setMoney({...money, coins: money.coins - 500000 , wood: money.wood - 250000 })
             setUnlockJob({...unlockJob, miner : true , buttonMiner : true })
 
         }
@@ -106,7 +106,7 @@ const PageIdle = () => {
     
     const handleUnlockDiamondMiner = () => {
         if (money.coins >= 1 && money.wood >= 1 && money.stone >= 1) {
-            // setMoney({...money, coins: money.coins - 1000000 , wood: money.wood - 500000, stone: money.stone - 250000 })
+            setMoney({...money, coins: money.coins - 1000000 , wood: money.wood - 500000, stone: money.stone - 250000 })
             setUnlockJob({...unlockJob, diamondMiner : true , buttonDiamondMiner : true })
 
         }
