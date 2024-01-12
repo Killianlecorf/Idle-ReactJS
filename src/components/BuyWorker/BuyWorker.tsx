@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, FC } from 'react';
+import React, { useEffect, useRef, FC, Dispatch } from 'react';
+import { MoneyState, WorkerState } from "../../types/Ressources.interface";
 
 interface BuyWorkerProps {
-  money: Record<string, number>;
+  money: MoneyState;
   setMoney: React.Dispatch<React.SetStateAction<Record<string, number>>>;
   typeMoney: string;
-  idleWorker: Record<string, number>;
-  setIdleWorker: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  idleWorker: WorkerState;
+  setIdleWorker: Dispatch<React.SetStateAction<WorkerState>>;
   typeJuniorWorker: string;
   typeIntermediateWorker: string;
   typeExpertWorker: string;
@@ -31,7 +32,7 @@ const BuyWorker: FC<BuyWorkerProps> = ({
 
   const handleBuyJuniorWorker = () => {
     if (money[typeMoney] >= 10) {
-      setMoney({ ...money, [typeMoney]: money[typeMoney] - 10 });
+      setMoney({ ...money, typeMoney: money[typeMoney] - 10 });
       setIdleWorker({ ...idleWorker, [typeJuniorWorker]: idleWorker[typeJuniorWorker] + 1 });
     }
   };
@@ -41,7 +42,7 @@ const BuyWorker: FC<BuyWorkerProps> = ({
       ...previousValue,
       [typeMoney]: previousValue[typeMoney] + idleWorker[typeJuniorWorker],
     }));
-  };
+  }
 
   useEffect(() => {
     if (idleWorker[typeJuniorWorker] !== 0) {
@@ -56,7 +57,7 @@ const BuyWorker: FC<BuyWorkerProps> = ({
 
   const handleBuyIntermediateWorker = () => {
     if (money[typeMoney] >= 1000) {
-      setMoney({ ...money, [typeMoney]: money[typeMoney] - 1000 });
+      setMoney({ ...money, typeMoney: money[typeMoney] - 1000 });
       setIdleWorker({ ...idleWorker, [typeIntermediateWorker]: idleWorker[typeIntermediateWorker] + 1 });
     }
   };
