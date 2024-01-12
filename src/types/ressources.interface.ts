@@ -1,9 +1,10 @@
-export interface WorkerState {
-    juniorWorker: number;
-    intermediateWorker: number;
-    expertWorker: number;
+export interface MoneyState {
+    coins: number,
+    wood: number,
+    stone: number,
+    diamond: number,
   }
-  
+
 export interface WorkerState {
     juniorWorker: number;
     intermediateWorker: number;

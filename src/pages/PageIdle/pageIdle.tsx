@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BuyWorker from '../../components/BuyWorker/BuyWorker';
 import ClickerComponent from '../../components/ClickerComponent/ClickerComponent';
-import { MoneyState, WorkerState, UnlockJobState } from "../../types/Ressources.interface";
+import { MoneyState, WorkerState, UnlockJobState } from "../../types/ressources.interface";
 
 const PageIdle: React.FC = () => {
   const [money, setMoney] = useState<MoneyState>({
@@ -11,7 +11,7 @@ const PageIdle: React.FC = () => {
     diamond: 0,
   });
 
-  const [idleBanker, setIdleBanker] = useState<WorkerState>({
+  const [banker, setBanker] = useState<WorkerState>({
     juniorWorker: 0,
     intermediateWorker: 0,
     expertWorker: 0,
@@ -65,12 +65,25 @@ const PageIdle: React.FC = () => {
     }
   };
 
-  const displayWorker = (type: string, workerState: WorkerState, setType: React.Dispatch<React.SetStateAction<WorkerState>>) => {
+  const displayWorker = () => {
     return (
       <div className="workerCard">
-        <ClickerComponent money={money} setMoney={setMoney} typeMoney={type} />
+        <ClickerComponent money={money.coins} setMoney={setMoney} typeMoney="coins" />
         <div className="cardWorker">
-          <BuyWorker money={money} setMoney={setMoney} typeMoney={type} idleWorker={workerState} setIdleWorker={setType} />
+          <BuyWorker 
+            numberMoney={money.coins} 
+            setMoney={setMoney} 
+            money={money}
+            typeMoney="coins" 
+            worker={banker} 
+            setIdleWorker={setBanker}
+            typeJuniorWorker="juniorWorker"
+            juniorWorker={banker.juniorWorker}
+            typeIntermediateWorker="intermediateWorker"
+            intermediaireWorker={banker.intermediateWorker}
+            typeExpertWorker="expertWorker"
+            experWorker={banker.expertWorker}
+          />
         </div>
       </div>
     );
@@ -80,17 +93,21 @@ const PageIdle: React.FC = () => {
     if (unlockJob.lumberjack) {
       return (
         <div className="workerCard">
-          <ClickerComponent money={money} setMoney={setMoney} typeMoney="wood" />
+          <ClickerComponent money={money.wood} setMoney={setMoney} typeMoney="wood" />
           <div className="cardWorker">
             <BuyWorker
-              money={money}
+              numberMoney={money.wood}
               setMoney={setMoney}
               typeMoney="wood"
-              idleWorker={lumberjack}
+              money={money}
+              worker={lumberjack}
               setIdleWorker={setLumberjack}
               typeJuniorWorker="juniorLumberjack"
+              juniorWorker={lumberjack.juniorWorker}
               typeIntermediateWorker="intermediateLumberjack"
+              intermediaireWorker={lumberjack.intermediateWorker}
               typeExpertWorker="expertLumberjack"
+              experWorker={lumberjack.expertWorker}
             />
           </div>
           <div className="upgradeWorker">
@@ -112,17 +129,21 @@ const PageIdle: React.FC = () => {
     if (unlockJob.miner) {
       return (
         <div className="workerCard">
-          <ClickerComponent money={money} setMoney={setMoney} typeMoney="stone" />
+          <ClickerComponent money={money.stone} setMoney={setMoney} typeMoney="stone" />
           <div className="cardWorker">
             <BuyWorker
-              money={money}
+              numberMoney={money.stone}
               setMoney={setMoney}
               typeMoney="stone"
-              idleWorker={miner}
+              worker={miner}
+              money={money}
               setIdleWorker={setMiner}
               typeJuniorWorker="juniorMiner"
+              juniorWorker={miner.juniorWorker}
               typeIntermediateWorker="intermediateMiner"
+              intermediaireWorker={miner.intermediateWorker}
               typeExpertWorker="expertMiner"
+              experWorker={miner.expertWorker}
             />
           </div>
           <div className="upgradeWorker">
@@ -144,17 +165,21 @@ const PageIdle: React.FC = () => {
     if (unlockJob.diamondMiner) {
       return (
         <div className="workerCard">
-          <ClickerComponent money={money} setMoney={setMoney} typeMoney="diamond" />
+          <ClickerComponent money={money.diamond} setMoney={setMoney} typeMoney="diamond" />
           <div className="cardWorker">
             <BuyWorker
-              money={money}
+              numberMoney={money.diamond}
               setMoney={setMoney}
               typeMoney="diamond"
-              idleWorker={diamondMiner}
+              money={money}
+              worker={diamondMiner}
               setIdleWorker={setDiamondMiner}
               typeJuniorWorker="juniorDiamondMiner"
+              juniorWorker={diamondMiner.juniorWorker}
               typeIntermediateWorker="intermediateDiamondMiner"
+              intermediaireWorker={diamondMiner.intermediateWorker}
               typeExpertWorker="expertDiamondMiner"
+              experWorker={diamondMiner.expertWorker}
             />
           </div>
         </div>
@@ -162,10 +187,13 @@ const PageIdle: React.FC = () => {
     }
   };
 
+console.log(money.wood);
+
+
   return (
     <div className="workerBoardBack">
       <div className="workerBoard">
-        {displayWorker('coins', idleBanker, setIdleBanker)}
+        {displayWorker()}
         <div className="upgradeWorker">
           <p>Buy Lumberjack: 50 000 coins</p>
           {!unlockJob.buttonLumberjack ? (

@@ -1,15 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import LocalString from '../micro-components/LocalString/LocalString';
+import { MoneyState } from "../../types/ressources.interface";
 
 interface ClickerComponentProps {
-  money: Record<string, number>;
-  setMoney: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  money: number;
+  setMoney: Dispatch<SetStateAction<MoneyState>>;
   typeMoney: string;
 }
 
 const ClickerComponent: FC<ClickerComponentProps> = ({ money, setMoney, typeMoney }) => {
+
   const handleChangeCoins = () => {
-    setMoney({ ...money, [typeMoney]: money[typeMoney] + 1 });
+    setMoney((prevMoney) => ({ ...prevMoney, [typeMoney]: money + 1 }));
   };
 
   return (
@@ -18,7 +20,7 @@ const ClickerComponent: FC<ClickerComponentProps> = ({ money, setMoney, typeMone
         Click
       </button>
       <div>
-        <LocalString number={money[typeMoney]} />
+        <LocalString number={money} />
       </div>
     </div>
   );
