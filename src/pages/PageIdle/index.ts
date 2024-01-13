@@ -1,2 +1,2 @@
-import PageIdle from "./PageIdle";
+import PageIdle from "./pageIdle";
 export default PageIdle
