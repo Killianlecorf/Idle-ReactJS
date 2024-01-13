@@ -122,7 +122,9 @@ const PageIdle: React.FC = () => {
           </div>
         </div>
       );
-    }
+    } else{
+      return null
+    } 
   };
 
   const displayMiner = () => {
@@ -158,7 +160,9 @@ const PageIdle: React.FC = () => {
           </div>
         </div>
       );
-    }
+    }else{
+      return null
+    } 
   };
 
   const displayDiamondMiner = () => {
@@ -184,7 +188,9 @@ const PageIdle: React.FC = () => {
           </div>
         </div>
       );
-    }
+    }else{
+      return null
+    } 
   };
 
 console.log(money.wood);

@@ -48,7 +48,7 @@ const BuyWorker: FC<BuyWorkerProps> = ({
   const additionMiner = () => {
     setMoney((previousValue) => ({
       ...previousValue,
-      [typeMoney]: [typeMoney] + typeJuniorWorker,
+      [typeMoney]: previousValue[typeMoney] + juniorWorker,
     }));
   };
 
@@ -73,9 +73,10 @@ const BuyWorker: FC<BuyWorkerProps> = ({
   const additionIntermediateWorker = () => {
     setMoney((previousValue) => ({
       ...previousValue,
-      [typeMoney]: [typeMoney] + worker.intermediateWorker * numberIntermediateWorker,
+      [typeMoney]: previousValue[typeMoney] + worker.intermediateWorker * numberIntermediateWorker,
     }));
   };
+  
 
   useEffect(() => {
     if (intermediaireWorker !== 0) {

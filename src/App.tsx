@@ -1,5 +1,5 @@
-import PageIdle from "./pages/pageIdle";
-
+import PageIdle from "./pages/PageIdle/PageIdle";
+import React from 'react';
 
 function App() {
   return (

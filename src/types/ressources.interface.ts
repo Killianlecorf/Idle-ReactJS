@@ -3,6 +3,7 @@ export interface MoneyState {
     wood: number,
     stone: number,
     diamond: number,
+    [key: string]: number;
   }
 
 export interface WorkerState {
