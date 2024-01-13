@@ -1,24 +1,33 @@
-import React, { useEffect, useRef, FC } from 'react';
+import { useEffect, useRef, FC, Dispatch, SetStateAction } from 'react';
+import { MoneyState, WorkerState } from "../../types/ressources.interface";
 
 interface BuyWorkerProps {
-  money: Record<string, number>;
-  setMoney: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  numberMoney: number;
+  setMoney: Dispatch<SetStateAction<MoneyState>>;
   typeMoney: string;
-  idleWorker: Record<string, number>;
-  setIdleWorker: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  money: MoneyState;
+  worker: WorkerState;
+  setIdleWorker: Dispatch<React.SetStateAction<WorkerState>>;
   typeJuniorWorker: string;
+  juniorWorker: number;
   typeIntermediateWorker: string;
+  intermediaireWorker: number;
   typeExpertWorker: string;
+  experWorker: number;
 }
 
 const BuyWorker: FC<BuyWorkerProps> = ({
-  money,
+  numberMoney,
   setMoney,
   typeMoney,
-  idleWorker,
+  money,
+  worker,
   setIdleWorker,
+  juniorWorker,
   typeJuniorWorker,
+  intermediaireWorker,
   typeIntermediateWorker,
+  experWorker,
   typeExpertWorker,
 }) => {
     const intervalJuniorWorkerId = useRef<NodeJS.Timeout | null>(null);
@@ -30,21 +39,21 @@ const BuyWorker: FC<BuyWorkerProps> = ({
   const numberExpertWorker = 200;
 
   const handleBuyJuniorWorker = () => {
-    if (money[typeMoney] >= 10) {
-      setMoney({ ...money, [typeMoney]: money[typeMoney] - 10 });
-      setIdleWorker({ ...idleWorker, [typeJuniorWorker]: idleWorker[typeJuniorWorker] + 1 });
+    if (numberMoney >= 10) {
+      setMoney({...money , [typeMoney]: numberMoney - 10 });
+      setIdleWorker({ ...worker, [typeJuniorWorker]: typeJuniorWorker + 1 });
     }
   };
 
   const additionMiner = () => {
     setMoney((previousValue) => ({
       ...previousValue,
-      [typeMoney]: previousValue[typeMoney] + idleWorker[typeJuniorWorker],
+      [typeMoney]: previousValue[typeMoney] + juniorWorker,
     }));
   };
 
   useEffect(() => {
-    if (idleWorker[typeJuniorWorker] !== 0) {
+    if (juniorWorker !== 0) {
       clearInterval(intervalJuniorWorkerId.current!);
       intervalJuniorWorkerId.current = setInterval(additionMiner, 1000);
     }
@@ -52,24 +61,25 @@ const BuyWorker: FC<BuyWorkerProps> = ({
     return () => {
       clearInterval(intervalJuniorWorkerId.current!);
     };
-  }, [idleWorker[typeJuniorWorker]]);
+  }, [typeJuniorWorker]);
 
   const handleBuyIntermediateWorker = () => {
-    if (money[typeMoney] >= 1000) {
-      setMoney({ ...money, [typeMoney]: money[typeMoney] - 1000 });
-      setIdleWorker({ ...idleWorker, [typeIntermediateWorker]: idleWorker[typeIntermediateWorker] + 1 });
+    if (numberMoney >= 1000) {
+      setMoney({ ...money, [typeMoney]: numberMoney - 1000 });
+      setIdleWorker({ ...worker, [typeIntermediateWorker]: worker.intermediateWorker + 1 });
     }
   };
 
   const additionIntermediateWorker = () => {
     setMoney((previousValue) => ({
       ...previousValue,
-      [typeMoney]: previousValue[typeMoney] + idleWorker[typeIntermediateWorker] * numberIntermediateWorker,
+      [typeMoney]: previousValue[typeMoney] + worker.intermediateWorker * numberIntermediateWorker,
     }));
   };
+  
 
   useEffect(() => {
-    if (idleWorker[typeIntermediateWorker] !== 0) {
+    if (intermediaireWorker !== 0) {
       clearInterval(intervalIntermediateWorkerId.current!);
       intervalIntermediateWorkerId.current = setInterval(additionIntermediateWorker, 1000);
     }
@@ -77,24 +87,24 @@ const BuyWorker: FC<BuyWorkerProps> = ({
     return () => {
       clearInterval(intervalIntermediateWorkerId.current!);
     };
-  }, [idleWorker[typeIntermediateWorker]]);
+  }, [typeIntermediateWorker]);
 
   const handleBuyExpertWorker = () => {
-    if (money[typeMoney] >= 1000000) {
-      setMoney({ ...money, [typeMoney]: money[typeMoney] - 1000000 });
-      setIdleWorker({ ...idleWorker, [typeExpertWorker]: idleWorker[typeExpertWorker] + 1 });
+    if (numberMoney >= 1000000) {
+      setMoney({ ...money, [typeMoney]: numberMoney - 1000000 });
+      setIdleWorker({ ...worker, [typeExpertWorker]: worker.expertWorker + 1 });
     }
   };
 
   const additionExpertWorker = () => {
     setMoney((previousValue) => ({
       ...previousValue,
-      [typeMoney]: previousValue[typeMoney] + idleWorker[typeExpertWorker] * numberExpertWorker,
+      [typeMoney]: previousValue[typeMoney] + worker.expertWorker * numberExpertWorker,
     }));
   };
 
   useEffect(() => {
-    if (idleWorker[typeExpertWorker] !== 0) {
+    if (experWorker !== 0) {
       clearInterval(intervalExpertWorkerId.current!);
       intervalExpertWorkerId.current = setInterval(additionExpertWorker, 1000);
     }
@@ -102,23 +112,23 @@ const BuyWorker: FC<BuyWorkerProps> = ({
     return () => {
       clearInterval(intervalExpertWorkerId.current!);
     };
-  }, [idleWorker[typeExpertWorker]]);
+  }, [typeExpertWorker]);
 
   return (
     <div className='cardWorker'>
       <div className='priceWorker'>
-        <p>Junior worker : {idleWorker[typeJuniorWorker]}</p>
+        <p>Junior worker : {typeJuniorWorker}</p>
         <button onClick={handleBuyJuniorWorker}>10 {typeMoney}</button>
       </div>
       <div className='priceWorker'>
         <p>
           {' '}
-          worker : <br></br> {idleWorker[typeIntermediateWorker]}
+          worker : <br></br> {typeIntermediateWorker}
         </p>
         <button onClick={handleBuyIntermediateWorker}>1000 {typeMoney}</button>
       </div>
       <div className='priceWorker'>
-        <p>Expert Worker: {idleWorker[typeExpertWorker]}</p>
+        <p>Expert Worker: {typeExpertWorker}</p>
         <button onClick={handleBuyExpertWorker}>1 000 000 {typeMoney}</button>
       </div>
     </div>
