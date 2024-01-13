@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, FC, Dispatch, SetStateAction } from 'react';
+import { useEffect, useRef, FC, Dispatch, SetStateAction } from 'react';
 import { MoneyState, WorkerState } from "../../types/ressources.interface";
 
 interface BuyWorkerProps {

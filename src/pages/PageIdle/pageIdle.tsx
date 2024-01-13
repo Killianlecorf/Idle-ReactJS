@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import BuyWorker from '../../components/BuyWorker/BuyWorker';
 import ClickerComponent from '../../components/ClickerComponent/ClickerComponent';
 import { MoneyState, WorkerState, UnlockJobState } from "../../types/ressources.interface";

@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, SetStateAction } from 'react';
+import { FC, Dispatch, SetStateAction } from 'react';
 import LocalString from '../micro-components/LocalString/LocalString';
 import { MoneyState } from "../../types/ressources.interface";
 
