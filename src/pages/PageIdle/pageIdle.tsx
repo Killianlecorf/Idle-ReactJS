@@ -45,7 +45,7 @@ const PageIdle: React.FC = () => {
   });
 
   const handleUnlockLumberjack = () => {
-    if (money.coins >= 1) {
+    if (money.coins >= 50000) {
       setMoney({ ...money, coins: money.coins - 50000 });
       setUnlockJob({ ...unlockJob, lumberjack: true, buttonLumberjack: true });
     }
@@ -193,19 +193,21 @@ const PageIdle: React.FC = () => {
     } 
   };
 
-console.log(money.wood);
 
+console.log("banker", banker);
 
   return (
     <div className="workerBoardBack">
       <div className="workerBoard">
         {displayWorker()}
         <div className="upgradeWorker">
-          <p>Buy Lumberjack: 50 000 coins</p>
           {!unlockJob.buttonLumberjack ? (
-            <button className="UpgaradeWorkerButton" onClick={handleUnlockLumberjack}>
-              Buy
-            </button>
+            <div className="">
+              <p>Buy Lumberjack: 50 000 coins</p>
+              <button className="UpgaradeWorkerButton" onClick={handleUnlockLumberjack}>
+                Buy
+              </button>
+            </div>
           ) : (
             ''
           )}

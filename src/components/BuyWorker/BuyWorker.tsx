@@ -41,7 +41,7 @@ const BuyWorker: FC<BuyWorkerProps> = ({
   const handleBuyJuniorWorker = () => {
     if (numberMoney >= 10) {
       setMoney({...money , [typeMoney]: numberMoney - 10 });
-      setIdleWorker({ ...worker, [typeJuniorWorker]: typeJuniorWorker + 1 });
+      setIdleWorker({ ...worker, [typeJuniorWorker]: juniorWorker + 1 });
     }
   };
 
@@ -61,7 +61,7 @@ const BuyWorker: FC<BuyWorkerProps> = ({
     return () => {
       clearInterval(intervalJuniorWorkerId.current!);
     };
-  }, [typeJuniorWorker]);
+  }, [juniorWorker]);
 
   const handleBuyIntermediateWorker = () => {
     if (numberMoney >= 1000) {
@@ -87,7 +87,7 @@ const BuyWorker: FC<BuyWorkerProps> = ({
     return () => {
       clearInterval(intervalIntermediateWorkerId.current!);
     };
-  }, [typeIntermediateWorker]);
+  }, [intermediaireWorker]);
 
   const handleBuyExpertWorker = () => {
     if (numberMoney >= 1000000) {
@@ -112,7 +112,7 @@ const BuyWorker: FC<BuyWorkerProps> = ({
     return () => {
       clearInterval(intervalExpertWorkerId.current!);
     };
-  }, [typeExpertWorker]);
+  }, [experWorker]);
 
   return (
     <div className='cardWorker'>
