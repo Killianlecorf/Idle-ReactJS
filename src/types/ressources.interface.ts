@@ -9,7 +9,7 @@ export interface MoneyState {
 export interface WorkerState {
     juniorWorker: number;
     intermediateWorker: number;
-    expertWorker: number;
+    expertWorker: number; 
   }
   
 export interface UnlockJobState {
