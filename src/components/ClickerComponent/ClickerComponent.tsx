@@ -12,7 +12,7 @@ const ClickerComponent: FC<ClickerComponentProps> = ({ money, setMoney, typeMone
 
   const handleChangeCoins = () => {
     setMoney((prevMoney) => ({ ...prevMoney, [typeMoney]: money + 1 }));
-  };
+  }; 
 
   return (
     <div className='centerCard'>
