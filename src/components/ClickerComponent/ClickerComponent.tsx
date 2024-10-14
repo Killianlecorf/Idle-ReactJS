@@ -14,9 +14,19 @@ const ClickerComponent: FC<ClickerComponentProps> = ({ money, setMoney, typeMone
     setMoney((prevMoney) => ({ ...prevMoney, [typeMoney]: money + 1 }));
   }; 
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
+
   return (
     <div className='centerCard'>
-      <button className='clickFarm' onClick={handleChangeCoins}>
+      <button className='clickFarm' 
+        onClick={handleChangeCoins}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+      >
         Click
       </button>
       <div>
